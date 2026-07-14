@@ -1,0 +1,2765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAOLA CREST NIGERIA LIMITED | Professional Building Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #ffffff;
+            --off-white: #f8fafc;
+            --sky-blue: #0ea5e9;
+            --sky-light: #e0f2fe;
+            --sky-dark: #053a54;
+            --red: #7b3232;
+            --red-light: #fef2f2;
+            --red-dark: #610101;
+            --orange: #f97316;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        /* Professional Loading Screen */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gray-900) 0%, #1a1a2e 100%);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 0.8s ease-out, visibility 0.8s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+            position: relative;
+        }
+
+        .loader-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            letter-spacing: 2px;
+        }
+
+        .loader-logo span {
+            color: var(--orange);
+        }
+
+        .loader-subtitle {
+            color: var(--gray-200);
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+        }
+
+        .loader-progress-container {
+            width: 500px;
+            height: 3px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 0.5s ease 0.6s forwards;
+        }
+
+        .loader-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--orange), var(--red));
+            width: 5%;
+            animation: loadProgress 1.5s ease-in-out forwards;
+            box-shadow: 0 0 40px rgba(249, 115, 22, 0.5);
+        }
+
+        .loader-text {
+            margin-top: 1.5rem;
+            color: var(--gray-600);
+            font-size: 1rem;
+            opacity: 0;
+            animation: fadeIn 0.5s ease 1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes loadProgress {
+            0% { width: 0%; }
+            50% { width: 60%; }
+            100% { width: 100%; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--red), var(--orange));
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--gray-800);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--sky-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
+            color: var(--white) !important;
+            padding: 0.7rem 1.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 2px;
+            background: var(--gray-800);
+            transition: 0.3s;
+        }
+
+        /* Page Sections */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Slideshow Section */
+        .hero-slideshow {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide {
+           position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 6s ease-out;
+            transform: scale(1.1);
+            z-index: 1;
+        }
+
+         .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 2;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 15%;
+            left: 10%;
+            right: 10%;
+            color: white;
+            z-index: 3;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+        }
+
+        .slide.active .slide-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-content h2 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.5);
+            letter-spacing: -0.02em;
+        }
+
+        .slide-content p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            max-width: 600px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            gap: 20px;
+            z-index: 10;
+        }
+
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .hero-badge-top {
+            display: inline-block;
+            background: rgba(249, 115, 22, 0.9);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease 0.5s forwards;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease 0.7s forwards;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content h1 span {
+            color: var(--orange);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-content h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(249, 115, 22, 0.3);
+            z-index: -1;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease 0.9s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease 1.1s forwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Slide Indicators */
+        .slide-indicators {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 50px;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .indicator.active {
+            background: var(--orange);
+        }
+
+        .indicator.active::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: var(--white);
+            width: 0%;
+            animation: progress 5s linear;
+        }
+
+        @keyframes progress {
+            to { width: 100%; }
+        }
+
+        /* Scroll Down Indicator */
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            right: 60px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.5s forwards;
+            cursor: pointer;
+        }
+
+        .scroll-arrow {
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .scroll-arrow::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--white);
+            border-radius: 50%;
+            animation: scrollBounce 2s infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+            50% { transform: translateX(-50%) translateY(20px); opacity: 0; }
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--white);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--red), var(--orange), var(--sky-blue));
+        }
+
+        .stats-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 50%;
+            width: 1px;
+            background: var(--gray-200);
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--sky-light), var(--white));
+            color: var(--sky-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover .stat-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--sky-blue), var(--sky-dark));
+            color: var(--white);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            font-family: 'Playfair Display', serif;
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--red-light), var(--white));
+            color: var(--red);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--red-light);
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--red), var(--orange));
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--gray-600);
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* About Page */
+        .about-section {
+            padding: 6rem 0;
+            background: var(--off-white);
+        }
+
+        .about-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-bottom: 5rem;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.02);
+        }
+
+        .experience-box {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            background: linear-gradient(135deg, var(--sky-blue), var(--sky-dark));
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .experience-box .years {
+            font-size: 3.5rem;
+            font-weight: 800;
+            display: block;
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+
+        .experience-box span:last-child {
+            font-size: 1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .about-content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--gray-900);
+        }
+
+        .about-content p {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 12px;
+            transition: all 0.3s;
+            border: 1px solid var(--gray-200);
+        }
+
+        .about-feature:hover {
+            transform: translateX(5px);
+            border-color: var(--sky-blue);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .feature-check {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--red), var(--orange));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .about-feature h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gray-900);
+            margin-bottom: 0.3rem;
+        }
+
+        .about-feature p {
+            font-size: 0.9rem;
+            margin: 0;
+            color: var(--gray-600);
+        }
+
+        /* Values Cards */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s;
+            border: 1px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--red), var(--orange));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+            border-color: transparent;
+        }
+
+        .value-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--sky-light), var(--white));
+            color: var(--sky-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            transition: all 0.4s;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
+        }
+
+        .value-card:hover .value-icon {
+            background: linear-gradient(135deg, var(--sky-blue), var(--sky-dark));
+            color: var(--white);
+            transform: rotateY(360deg) scale(1.1);
+        }
+
+        .value-card h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--gray-900);
+        }
+
+        .value-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Services Page */
+        .services-section {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .services-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--sky-blue), var(--red));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+            z-index: 2;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+            border-color: transparent;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-image {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            transition: all 0.4s;
+        }
+
+        .service-card:hover .service-image::after {
+            height: 80%;
+        }
+
+        .service-number {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: linear-gradient(135deg, var(--red), var(--orange));
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-content h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--gray-900);
+        }
+
+        .service-content p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-link {
+            color: var(--sky-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .service-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.3s;
+        }
+
+        .service-link:hover {
+            gap: 1rem;
+            color: var(--red);
+        }
+
+        .service-link:hover::after {
+            width: 100%;
+        }
+
+        /* Projects Page */
+        .projects-section {
+            padding: 6rem 0;
+            background: var(--off-white);
+        }
+
+        .projects-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.9rem 2rem;
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            color: var(--gray-600);
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
+            color: var(--white);
+            border-color: var(--red);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 450px;
+            cursor: pointer;
+            background: var(--gray-900);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .project-card.large {
+            grid-column: span 2;
+            height: 500px;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.6s;
+            opacity: 0.9;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+            opacity: 0.5;
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 50%, transparent 100%);
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.4s;
+        }
+
+        .project-card:hover .project-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .project-category {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--sky-blue), var(--sky-dark));
+            color: var(--white);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-title {
+            font-size: 2.2rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .project-location {
+            color: var(--orange);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Quote Page */
+        .quote-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--sky-light) 0%, var(--white) 100%);
+            min-height: calc(100vh - 80px);
+        }
+
+        .quote-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .quote-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .quote-info {
+            position: sticky;
+            top: 100px;
+        }
+
+        .quote-info h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--gray-900);
+            line-height: 1.2;
+        }
+
+        .quote-info > p {
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .contact-card:hover {
+            transform: translateX(10px);
+            border-color: var(--sky-blue);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+
+        .contact-card.whatsapp .contact-icon {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            color: #16a34a;
+        }
+
+        .contact-card.email .contact-icon {
+            background: linear-gradient(135deg, var(--sky-light), #bae6fd);
+            color: var(--sky-blue);
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .contact-details h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-bottom: 0.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-details p {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .quote-form-wrapper {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.1);
+            border: 1px solid var(--gray-200);
+        }
+
+        .form-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--gray-100);
+        }
+
+        .form-header h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.6rem;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gray-800);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group label span {
+            color: var(--red);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            background: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--sky-blue);
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.1rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn.form-submit {
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+
+        .submit-btn.form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+        }
+
+        .submit-btn.whatsapp-submit {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(22, 163, 74, 0.3);
+        }
+
+        .submit-btn.whatsapp-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(22, 163, 74, 0.4);
+        }
+
+        .submit-btn.email-submit {
+            background: linear-gradient(135deg, var(--sky-blue), var(--sky-dark));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+        }
+
+        .submit-btn.email-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            color: var(--gray-600);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--gray-200);
+        }
+
+       /* Staff Page Styles */
+        .staff-section {
+            padding: 6rem 0;
+            background: var(--off-white);
+        }
+
+        .staff-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .staff-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .staff-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .staff-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            background: var(--gray-200);
+        }
+
+        .staff-info {
+            padding: 1.5rem;
+        }
+
+        .staff-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gray-900);
+            margin-bottom: 0.3rem;
+        }
+
+        .staff-role {
+            color: var(--sky-blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .staff-bio {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .staff-social {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .staff-social a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .staff-social a:hover {
+            background: var(--sky-blue);
+            color: var(--white);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--gray-900);
+            color: var(--gray-600);
+            padding: 5rem 0 2rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--red), var(--orange), var(--sky-blue));
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .footer-brand .logo {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            color: var(--gray-400);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--orange);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .footer-section a:hover {
+            color: var(--sky-blue);
+            transform: translateX(5px);
+        }
+
+        .footer-contact p {
+            color: var(--gray-400);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .social-links a:hover {
+            background: var(--sky-blue);
+            transform: translateY(-3px);
+            border-color: var(--sky-blue);
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 4rem auto 0;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: var(--sky-blue);
+            text-decoration: none;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gray-900);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transform: translateX(400px);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 9999;
+            border-left: 5px solid var(--sky-blue);
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--sky-blue), var(--sky-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-item:nth-child(2)::after {
+                display: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .experience-box {
+                right: 20px;
+                bottom: -20px;
+            }
+
+            .values-grid,
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card.large {
+                grid-column: span 1;
+            }
+
+            .quote-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quote-info {
+                position: static;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .staff-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .scroll-down {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-item::after {
+                display: none !important;
+            }
+
+            .values-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .staff-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .slide-indicators {
+                bottom: 20px;
+            }
+
+            .indicator {
+                width: 30px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.9s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Professional Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">WAOLA<span>CREST</span></div>
+            <div class="loader-subtitle">Nigeria Limited</div>
+            <div class="loader-progress-container">
+                <div class="loader-progress"></div>
+            </div>
+            <div class="loader-text">Welcome to Professional Building Solutions</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showPage('home')">
+                <div class="logo-icon">🏗️</div>
+                <div style="display: flex; flex-direction: column; line-height: 1.2;">
+                    <span style="font-size: 1.4rem; font-weight: 800; color: var(--gray-900);">WAOLA<span style="color: var(--orange);">CREST</span></span>
+                    <span style="font-size: 0.7rem; color: var(--gray-600); letter-spacing: 1px; font-family: 'Inter', sans-serif; font-weight: 600;">RC: 1890423</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('about')">About</a></li>
+                <li><a href="#" onclick="showPage('services')">Services</a></li>
+                <li><a href="#" onclick="showPage('projects')">Projects</a></li>
+                <li><a href="#" onclick="showPage('staff')">Team</a></li>
+                <li><a href="#" class="nav-cta" onclick="showPage('quote')">Get Quote</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Slideshow -->
+        <section class="hero-slideshow">
+            <div class="slide active">
+                <img src="img/background02.jfif" alt="Construction Site">
+            </div>
+            <div class="slide">
+                <img src="img/IMG-20260310-WA0026.jpg" alt="Modern Building">
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Construction Workers">
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Completed Project">
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-badge-top">RC: 1890423</div>
+                <br><span style="color: orange; font-size: 1.2rem; font-weight: 500; transition: 0.3s ease-in;">WAOLACREST NIGERIA LIMITED</span>
+                <h1>Building <span>Excellence</span> With Integrity</h1>
+                <p>Professional construction services tailored to your vision. From concept to completion, we deliver quality craftsmanship that stands the test of time.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary" onclick="showPage('quote')">Get Free Quote</a>
+                    <a href="#" class="btn btn-secondary" onclick="showPage('projects')">View Projects</a>
+                </div>
+            </div>
+
+            <div class="slide-indicators">
+                <div class="indicator active" onclick="goToSlide(0)"></div>
+                <div class="indicator" onclick="goToSlide(1)"></div>
+                <div class="indicator" onclick="goToSlide(2)"></div>
+                <div class="indicator" onclick="goToSlide(3)"></div>
+            </div>
+
+            <div class="scroll-down" onclick="document.getElementById('stats').scrollIntoView({behavior: 'smooth'})">
+                <span>Scroll</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+
+        <section class="stats-section">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-icon">🏗️</div>
+                    <span class="stat-number" data-target="20">0</span>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">👷</div>
+                    <span class="stat-number" data-target="8">0</span>
+                    <div class="stat-label">Expert Workers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">🏆</div>
+                    <span class="stat-number" data-target="50">0</span>
+                    <div class="stat-label">Industry Awards</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">😊</div>
+                    <span class="stat-number" data-target="98">0</span>
+                    <div class="stat-label">Client Satisfaction %</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-section" style="padding: 5rem 0;">
+            <div class="services-container">
+                <div class="section-header">
+                    <span class="section-tag">Our Services</span>
+                    <h2>What We Offer</h2>
+                    <p>Comprehensive construction solutions tailored to meet your specific needs and exceed expectations.</p>
+                </div>
+                <div class="services-grid" style="grid-template-table: repeat(4, 1fr); ">
+                    <div class="service-card" style="text-align: center; padding: 2rem;">
+                        <div class="value-icon" style="margin: 0 auto 1rem; background: var(--red-light); color: var(--red);">🏢</div>
+                        <h3 style="font-family: 'Inter', sans-serif; font-size: 1rem;">Commercial, <br>Residential & <br>Industrial Building</h3>
+                    </div>
+                    <div class="service-card" style="text-align: center; padding: 2rem;">
+                        <div class="value-icon" style="margin: 0 auto 1rem; background: var(--sky-light); color: var(--sky-blue);">🚚</div>
+                        <h3 style="font-family: 'Inter', sans-serif; font-size: 1rem;">Supply of Construction Materials</h3>
+                    </div>
+                    <div class="service-card" style="text-align: center; padding: 2rem;">
+                        <div class="value-icon" style="margin: 0 auto 1rem; background: #f0fdf4; color: #16a34a;">🚧</div>
+                        <h3 style="font-family: 'Inter', sans-serif; font-size: 1rem;">Road & Drainage</h3>
+                    </div>
+                    <div class="service-card" style="text-align: center; padding: 2rem;">
+                        <div class="value-icon" style="margin: 0 auto 1rem; background: #fef3c7; color: #d97706;">👷</div>
+                        <h3 style="font-family: 'Inter', sans-serif; font-size: 1rem;">Supply of Construction Professionals</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <section class="about-section">
+            <div class="about-container">
+                <div class="section-header">
+                    <span class="section-tag">About Us</span>
+                    <span style="color: #d97706; font-size: 1rem; font-weight: 600;">Established 2019</span>
+                    <h2>Building Trust Since 2022</h2>
+                    <p>Upholding construction excellence, innovation, and unwavering commitment to quality.</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-image">
+                        <img src="img/CE0-3.jpg" alt="Our Team">
+                        <div class="experience-box">
+                            <span class="years">13+</span>
+                            <span style="font-size: 0.9rem;">Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="about-content">
+                        <h3>Your Vision, Our Expertise</h3>
+                        <p>Waola & sheza crest Nigeria Ltd is a company was named in 2019 registered with CAC in 2022. We started with
+                            production and supply of high quality block for contractors to construct, also we started the vision by designing facilities 
+                            and infrastructure the primary operating headquarters in Lagos Nigeria, specializing in residential, commercial and industrial
+                             projects. waola & sheza is dedicated to delivering high-quality, innovation and cost effective solution to our clients, commitment
+                              to excellency and exceeding expectations</p>
+                        <p>We are team of experienced professionals, trained in operation with state of the art technology, we are committed to quality craftmanship from concept to completion, delivering exceptional results on time.</p>
+                        
+                        <div class="about-features">
+                            <div class="about-feature">
+                                <div class="feature-check">✓</div>
+                                <div>
+                                    <h4>Licensed & Insured</h4>
+                                    <p>Full compliance with industry standards</p>
+                                </div>
+                            </div>
+                            <div class="about-feature">
+                                <div class="feature-check">✓</div>
+                                <div>
+                                    <h4>Quality Materials</h4>
+                                    <p>Premium-grade construction supplies</p>
+                                </div>
+                            </div>
+                            <div class="about-feature">
+                                <div class="feature-check">✓</div>
+                                <div>
+                                    <h4>On-Time Delivery</h4>
+                                    <p>Strict project timeline adherence</p>
+                                </div>
+                            </div>
+                            <div class="about-feature">
+                                <div class="feature-check">✓</div>
+                                <div>
+                                    <h4>24/7 Support</h4>
+                                    <p>Round-the-clock project assistance</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">🎯</div>
+                        <h4>Our Mission</h4>
+                        <p>To lead the construction services industry in Africa by offering clients the highest level of internal expertise, safety, a fully integrated suite of services.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">👁️</div>
+                        <h4>Our Vision</h4>
+                        <p>We don't construct, we enhanced the honor of safety, integrity & dignity of construction work.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">💎</div>
+                        <h4>Our Values</h4>
+                        <p>Integrity, quality, safety, and client satisfaction form the cornerstone of every project we undertake.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page">
+        <section class="services-section">
+            <div class="services-container">
+                <div class="section-header">
+                    <span class="section-tag">Services</span>
+                    <h2>Comprehensive Solutions</h2>
+                    <p>From initial planning to final handover, we provide end-to-end construction services tailored to your needs.</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-image" style="background-image: url('img/commercial-01.jpg');">
+                            <div class="service-number">01</div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Commercial Construction</h3>
+                            <p>Office buildings, retail spaces, and hospitality projects built to maximize functionality and aesthetic appeal.</p>
+                            <a href="#" class="service-link" onclick="showPage('quote')">Learn More →</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-image" style="background-image: url('img/Residential-01.jpg');">
+                            <div class="service-number">02</div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Residential Building</h3>
+                            <p>Custom homes, apartments, and housing developments crafted with attention to detail and family needs.</p>
+                            <a href="#" class="service-link" onclick="showPage('quote')">Learn More →</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-image" style="background-image: url('img/Industrial.jpg');">
+                            <div class="service-number">03</div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Industrial Projects</h3>
+                            <p>Manufacturing plants, warehouses, and distribution centers engineered for operational efficiency.</p>
+                            <a href="#" class="service-link" onclick="showPage('quote')">Learn More →</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-image" style="background-image: url('img/Road.jpg');">
+                            <div class="service-number">04</div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Road & Drainage</h3>
+                            <p>Transform existing spaces with modern upgrades while preserving structural integrity and character.</p>
+                            <a href="#" class="service-link" onclick="showPage('quote')">Learn More →</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-image" style="background-image: url('img/group engineers.avif');">
+                            <div class="service-number">05</div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Supply of Construction Expertise</h3>
+                            <p>On deck with architectural, Civil, Structural, mechanical and electrical expertise for solutions that balance aesthetics, functionality, and budget considerations.</p>
+                            <a href="#" class="service-link" onclick="showPage('quote')">Learn More →</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-image" style="background-image: url('img/materials.webp');">
+                            <div class="service-number">06</div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Supply of Construction Materials</h3>
+                            <p>End-to-end oversight ensuring timely delivery, budget control, and quality assurance throughout.</p>
+                            <a href="#" class="service-link" onclick="showPage('quote')">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Projects Page -->
+    <div id="projects" class="page">
+        <section class="projects-section">
+            <div class="projects-container">
+                <div class="section-header">
+                    <span class="section-tag">Portfolio</span>
+                    <h2>Featured Projects</h2>
+                    <p>A showcase of our finest work demonstrating quality craftsmanship and innovative design.</p>
+                </div>
+
+                <div class="filter-tabs">
+                    <button class="filter-btn active" onclick="filterProjects('all', this)">All Projects</button>
+                    <button class="filter-btn" onclick="filterProjects('commercial', this)">Commercial</button>
+                    <button class="filter-btn" onclick="filterProjects('residential', this)">Residential</button>
+                    <button class="filter-btn" onclick="filterProjects('industrial', this)">Industrial</button>
+                     <button class="filter-btn" onclick="filterProjects('industrial', this)">Supply of Construction Materials</button>
+                     <button class="filter-btn" onclick="filterProjects('industrial', this)">Supply of Construction Expertise</button>
+                </div>
+
+                <div class="projects-grid">
+                    <div class="project-card large" data-category="residential">
+                        <img src="img/agiran.png" alt="Skyline Tower" class="project-image">
+                        <div class="project-overlay">
+                            <span class="project-category">Residential</span>
+                            <h3 class="project-title">4 bedroom terrace 5 block</h3>
+                            <p class="project-location">📍 Agiran area, Lekki ajah road, Lagos state</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="residential">
+                        <img src="img/IMG-20260310-WA0025.jpg" alt="Azure Villas" class="project-image">
+                        <div class="project-overlay">
+                            <span class="project-category">Residential</span>
+                            <h3 class="project-title">Under-construction 4bedroom terraces of 4unit inflation view estate</h3>
+                            <p class="project-location">📍 Lagoon view estate Addo road, Ajah Lagos State</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="residential">
+                        <img src="img/Residential.jpg" alt="TechHub" class="project-image">
+                        <div class="project-overlay">
+                            <span class="project-category">Residential</span>
+                            <h3 class="project-title">Chevy view estate</h3>
+                            <p class="project-location">📍 Lekki Ajah road, Lagos State</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="industrial">
+                        <img src="img/Industrial-02.jpg" alt="Century Plaza" class="project-image">
+                        <div class="project-overlay">
+                            <span class="project-category">Industrial</span>
+                            <h3 class="project-title">Television and Radio House</h3>
+                            <p class="project-location">📍 Osun state</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="commercial">
+                        <img src="img/commercial-02.jpg" alt="Horizon Heights" class="project-image">
+                        <div class="project-overlay">
+                            <span class="project-category">Commercial</span>
+                            <h3 class="project-title">New redemption camp</h3>
+                            <p class="project-location">📍 Lagos ibadan expressway, Ogun state</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="residential">
+                        <img src="img/Residential-03.jpg" alt="Horizon Heights" class="project-image">
+                        <div class="project-overlay">
+                            <span class="project-category">Residential</span>
+                            <h3 class="project-title">Olivia City</h3>
+                            <p class="project-location">📍 Olivia city- Block E- lekki, Lagos state</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="residential">
+                        <img src="img/Residential-04.jpg" alt="Horizon Heights" class="project-image">
+                        <div class="project-overlay">
+                            <span class="project-category">Residential</span>
+                            <h3 class="project-title">4units of 2bedrooms Row House, 3block</h3>
+                            <p class="project-location">📍 Beechood estate, Lakowe golf estate</p>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="residential">
+                        <img src="img/Residential-05.jpg" alt="Horizon Heights" class="project-image">
+                        <div class="project-overlay">
+                            <span class="project-category">Residential</span>
+                            <h3 class="project-title">4Bedroom Bungalow</h3>
+                            <p class="project-location">📍 Ipaja, Lagos state</p>
+                        </div>
+                    </div>
+                     <div class="project-card" data-category="residential">
+                        <img src="img/Residential-06.jpg" alt="Horizon Heights" class="project-image">
+                        <div class="project-overlay">
+                            <span class="project-category">Residential</span>
+                            <h3 class="project-title">Olivia City Block A & B</h3>
+                            <p class="project-location">📍 Lekki, Lagos state</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+   <!-- Staff Page -->
+    <div id="staff" class="page">
+        <section class="staff-section">
+            <div class="staff-container">
+                <div class="section-header">
+                    <span class="section-tag">Our Team</span>
+                    <h2>Meet Our Experts</h2>
+                    <p>Dedicated professionals committed to delivering excellence in every project we undertake.</p>
+                </div>
+
+                <div class="staff-grid">
+                    <div class="staff-card">
+                        <span style="color: #f97316; font-size: 1.2rem; font-weight: 800;"> DIRECTORS</span>
+                        <img src="img/CEO-2.jpg" alt="CEO" class="staff-image">
+                        <div class="staff-info">
+                            <h3 class="staff-name">ENGR. SHERIFF ADELEKE O.</h3>
+                            <p class="staff-role">CEO/MD<br><span style="color: #d97706;">sheriff_adeleke@waolacrest.com</span></p>
+                            <p class="staff-bio">A reputable member of the Council for the Regulatory of Engineering in Nigeria (COREN) and Master in Business Administration MBA in progress.</p>
+                            <div class="staff-social">
+                                <a href="#">in</a>
+                                <a href="#">@</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="staff-card">
+                        <span style="color: #f97316; font-size: 1.2rem; font-weight: 800;"> DIRECTORS</span>
+                        <img src="img/Board of Trustee.png" alt="Operations" class="staff-image">
+                        <div class="staff-info">
+                            <h3 class="staff-name">MR. MOSES O. AFILAKA</h3>
+                            <p class="staff-role">Board of Trustees for the Company</p>
+                            <p class="staff-bio">Business owner in London City.</p>
+                            <div class="staff-social">
+                                <a href="#">in</a>
+                                <a href="#">@</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="staff-card">
+                        <span style="color: #f97316; font-size: 1.2rem; font-weight: 800;"> CO-PARTNER</span>
+                        <img src="img/hard-hat.avif" alt="CEO" class="staff-image">
+                        <div class="staff-info">
+                            <h3 class="staff-name">SAMUEL ODUOLA</h3>
+                            <p class="staff-role">Co-Partner<br><span style="color: #f97316;">samuel_oduola@waolacrest.com</span></p>
+                            <p class="staff-bio"></p>
+                            <div class="staff-social">
+                                <a href="#">in</a>
+                                <a href="#">@</a>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="staff-card">
+                        <span style="color: #f97316; font-size: 1.2rem; font-weight: 800;"> CO-PARTNER</span>
+                        <img src="img/CO-PARTNER-2.jpg" alt="CEO" class="staff-image">
+                        <div class="staff-info">
+                            <h3 class="staff-name">TOLU ADETAYO</h3>
+                            <p class="staff-role">Regional Projects Manager<br><span style="color: #f97316;"></span></p>
+                            <p class="staff-bio"></p>
+                            <div class="staff-social">
+                                <a href="#">in</a>
+                                <a href="#">@</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="staff-card">
+                        <img src="img/PROJECT-MANAGER.jpg" alt="Architect" class="staff-image">
+                        <div class="staff-info">
+                            <h3 class="staff-name">ENGR. SHEU JAMIU O.</h3>
+                            <p class="staff-role">Project Manager<br><span style="color: #f97316;">sheu_jamiu@waolacrest.com</span></p>
+                            <p class="staff-bio">A reputable civil engineer with a Masters Degree in civil engineering 
+                                (Geotechnical)  and a member of the Council for the Regulation of Engineering in Nigeria (COREN)</p>
+                            <div class="staff-social">
+                                <a href="#">in</a>
+                                <a href="#">@</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="staff-card">
+                        <img src="img/PROJECT-ENGINEER.jpg" alt="Safety" class="staff-image">
+                        <div class="staff-info">
+                            <h3 class="staff-name">ENGR. ABDULWAHAB LUKMAN O.</h3>
+                            <p class="staff-role">Project Engineer<br><span style="color: #f97316; font-size: 0.85rem;">abdulwahab_lukman@waolacrest.com</span></p>
+                            <p class="staff-bio"></p>
+                            <div class="staff-social">
+                                <a href="#">in</a>
+                                <a href="#">@</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="staff-card">
+                        <img src="img/PROJECT-MANAGER2.jpg" alt="Safety" class="staff-image">
+                        <div class="staff-info">
+                            <h3 class="staff-name">ENGR. ISSA QOZEEM BOLAJI</h3>
+                            <p class="staff-role">Project Engineer 1</p>
+                            <p class="staff-bio"></p>
+                            <div class="staff-social">
+                                <a href="#">in</a>
+                                <a href="#">@</a>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="staff-card">
+                        <img src="img/SITE ENGINEER.jpg" alt="Architect" class="staff-image">
+                        <div class="staff-info">
+                            <h3 class="staff-name">BABATUNDE ABDULAZEEZ K.</h3>
+                            <p class="staff-role">Site Engineer<br><span style="color: #f97316; font-size: 0.8rem;">babatunde_abdulazeez@waolacrest.com</span></p>
+                            <p class="staff-bio"></p>
+                            <div class="staff-social">
+                                <a href="#">in</a>
+                                <a href="#">@</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="staff-card">
+                        <img src="img/EXTERNAL LEGAL.png" alt="Engineer" class="staff-image">
+                        <div class="staff-info">
+                            <h3 class="staff-name">ZULFAH SALAUDEEN</h3>
+                            <p class="staff-role">External Legal Consultant<br><span style="color: #f97316;">zulfah_salaudeen@waolacrest.com</span></p>
+                            <p class="staff-bio">A corporate and commercial lawyer with experience in the
+                                 energy sector, skilled in supporting the organization structuring and reviewing
+                                  contractual arrangement while ensuring effective risk management and compliance
+                                   with applicable legal framworks</p>
+                            <div class="staff-social">
+                                <a href="#">in</a>
+                                <a href="#">@</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="staff-card">
+                        <img src="img/QC.jpg" alt="Engineer" class="staff-image">
+                        <div class="staff-info">
+                            <h3 class="staff-name">ENGR. ADEAGBO MUHAMMED K.</h3>
+                            <p class="staff-role">QC/Materials Engineer<br><span style="color: #f97316; font-size: 0.8rem;">adeagbo_muhammed@waolacrest.com</span></p>
+                            <p class="staff-bio"></p>
+                            <div class="staff-social">
+                                <a href="#">in</a>
+                                <a href="#">@</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="staff-card">
+                        <img src="img/SURVEYOR.jpg" alt="Engineer" class="staff-image">
+                        <div class="staff-info">
+                            <h3 class="staff-name">OKEYODE ZAMAD OLALEKAN</h3>
+                            <p class="staff-role">Certified Survey Technologist <br><span style="color: #f97316;">okeyode_zamad@waolacrest.com</span></p>
+                            <p class="staff-bio">Suverying and Geoinformatics from Federal school of Surveying Oyo, Oyo state.(11years survey services experience)</p>
+                            <div class="staff-social">
+                                <a href="#">in</a>
+                                <a href="#">@</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="staff-card">
+                        <img src="img/SURVEYOR-02.jpg" alt="Engineer" class="staff-image">
+                        <div class="staff-info">
+                            <h3 class="staff-name">BOLANLE EMMANUEL T.</h3>
+                            <p class="staff-role">Survey Technologist (MNIQS, PMU, HSE) <br><span style="color: #f97316; font-size: 0.85rem;">bolanle_emmanuel@waolacrest.com</span></p>
+                            <p class="staff-bio">HND from yabatech. (6years survey services experience)</p>
+                            <div class="staff-social">
+                                <a href="#">in</a>
+                                <a href="#">@</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Quote Page -->
+    <div id="quote" class="page">
+        <section class="quote-section">
+            <div class="quote-container">
+                <div class="quote-grid">
+                    <div class="quote-info">
+                        <h2>Get Your <span style="color: var(--red);">Free Quote</span></h2>
+                        <p>Ready to start your project? Fill out the form and our team will get back to you within 24 hours with a detailed estimate.</p>
+                        
+                        <div class="contact-methods">
+                            <a href="https://wa.me/+2347043787524" class="contact-card whatsapp" target="_blank">
+                                <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                                <div class="contact-details">
+                                    <h4>WhatsApp</h4>
+                                    <p>+234 704 378 7524</p>
+                                </div>
+                            </a>
+                            <a href="https://info@waolacrest.com" class="contact-card email">
+                                <div class="contact-icon">✉️</div>
+                                <div class="contact-details">
+                                    <h4>Email Us</h4>
+                                    <p>info@waolacrest.com</p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/waolacrest?igsh=MTIyZnFvaTg0emVkdQ==" class="contact-card whatsapp">
+                                <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+                                <div class="contact-details">
+                                    <h4>Instagram</h4>
+                                    <p>@IG waolacrest</p>
+                                </div>
+                            </a>
+                         <a href="https://www.facebook.com/share/17MTV85zXF/" class="contact-card email">
+                                <div class="contact-icon"><i class="fab fa-facebook"></i></div>
+                                <div class="contact-details">
+                                    <h4>Facebook</h4>
+                                    <p>Waolacrest Nigeria Limited</p>
+                                 </div>
+                            </a>
+                            </div>
+
+                        <div style="background: var(--white); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--sky-blue);">
+                            <h4 style="font-family: 'Inter', sans-serif; margin-bottom: 0.5rem; color: var(--gray-900);">Business Hours</h4>
+                            <p style="color: var(--gray-600); font-size: 0.95rem; margin: 0;">Mon - Fri: 8:00 AM - 6:00 PM<br>Sat: 9:00 AM - 2:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="quote-form-wrapper">
+                        <div class="form-header">
+                            <h3>Project Details</h3>
+                            <p>Tell us about your project and we'll provide a comprehensive quote.</p>
+                        </div>
+
+                        <form id="quoteForm" onsubmit="handleFormSubmit(event)">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>First Name <span>*</span></label>
+                                    <input type="text" id="firstName" required placeholder="John">
+                                </div>
+                                <div class="form-group">
+                                    <label>Last Name <span>*</span></label>
+                                    <input type="text" id="lastName" required placeholder="Doe">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Email Address <span>*</span></label>
+                                    <input type="email" id="email" required placeholder="john@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone Number <span>*</span></label>
+                                    <input type="tel" id="phone" required placeholder="+1 (555) 000-0000">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Service Type <span>*</span></label>
+                                    <select id="serviceType" required>
+                                        <option value="">Select a service...</option>
+                                        <option value="Commercial Construction">Commercial Construction</option>
+                                        <option value="Residential Building">Residential Building</option>
+                                        <option value="Industrial Projects">Industrial Projects</option>
+                                        <option value="Renovation">Supply of construction materials</option>
+                                         <option value="professionals">Supply of construction professionals</option>
+                                        <option value="Architecture">Architecture & Design</option>
+                                        <option value="Management">Project Management</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Budget Range</label>
+                                    <select id="budget">
+                                        <option value="">Select budget...</option>
+                                        <option value="$50k - $100k">#5 million - #100 million</option>
+                                        <option value="$100k - $500k">#100 million - #500 million</option>
+                                        <option value="$500k - $1M">#500 million +</option>
+                                        <option value="$1M+">#1 billion +</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Project Location <span>*</span></label>
+                                <input type="text" id="location" required placeholder="City, State">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Project Details <span>*</span></label>
+                                <textarea id="message" required placeholder="Please describe your project requirements, timeline, and any specific needs..."></textarea>
+                            </div>
+
+                            <div class="submit-options">
+                                <button type="submit" class="submit-btn form-submit">
+                                    <span><i class="fab fa-letter"></i></span> Submit Quote Request
+                                </button>
+                                
+                                <div class="divider">contact us via</div>
+                                
+                                <button type="button" class="submit-btn whatsapp-submit" onclick="submitViaWhatsApp()">
+                                    <span><i class="fab fa-whatsapps"></i></span> Send via WhatsApp
+                                </button>
+                                
+                                <button type="button" class="submit-btn email-submit" onclick="submitViaEmail()">
+                                    <span><i class="fab fa-email"></i></span> Send via Email
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#" class="logo" onclick="showPage('home')">
+                    <div class="logo-icon">🏗️</div>
+                    <span style="color: var(--gray-600); font-size: 1.2rem;">WAOLACREST <br>NIGERIA LIMITED</span>
+                </a>
+                <p>Professional construction services with a commitment to quality, safety, and client satisfaction. Building tomorrow's landmarks today.</p>
+                <div class="social-links" style="display: flex; gap: 1rem;">
+                     <a href="https://www.instagram.com/waolacrest?igsh=MTIyZnFvaTg0emVkdQ==" class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-labak-gold hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/17MTV85zXF/" class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-labak-gold hover:text-white transition-all"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/+2347043787524" class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-labak-gold hover:text-white transition-all"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#" onclick="showPage('home')">Home</a></li>
+                    <li><a href="#" onclick="showPage('about')">About Us</a></li>
+                    <li><a href="#" onclick="showPage('services')">Services</a></li>
+                    <li><a href="#" onclick="showPage('projects')">Projects</a></li>
+                    <li><a href="#" onclick="showPage('projects')">Team</a></li>
+                    <li><a href="#" onclick="showPage('projects')">Get a Quote</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#" onclick="showPage('services')">Commercial</a></li>
+                    <li><a href="#" onclick="showPage('services')">Residential</a></li>
+                    <li><a href="#" onclick="showPage('services')">Industrial</a></li>
+                     <li><a href="#" onclick="showPage('services')">Road & Drainage</a></li>
+                      <li><a href="#" onclick="showPage('services')">construction materials</a></li>
+                       <li><a href="#" onclick="showPage('services')">construction professionals</a></li>
+                    <li><a href="#" onclick="showPage('services')">Renovation</a></li>
+                </ul>
+            </div>
+            <div class="footer-section footer-contact">
+                <h4>Contact Info</h4>
+                <p>📍 5 gani lawa street, Ishitu Road, Igando, Lagos State</p>
+                <p>📞 +234 80 7490 9152</p>
+                <p>💬 +234 704 378 7524 (WhatsApp)</p>
+                <p>✉️ info@waolacrest.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 WAOLACREST NIGERIA LIMITED. All rights reserved.</p>
+            <p>Designed by <span style="color: var(--red);">♥</span> TimsTech</p>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <div class="toast-icon">✓</div>
+        <div>
+            <strong>Success!</strong>
+            <p style="margin: 0; font-size: 0.9rem;">Quote request submitted successfully.</p>
+        </div>
+    </div>
+
+    <script>
+        // Navigation
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        function showPage(pageName) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            document.getElementById(pageName).classList.add('active');
+            document.getElementById('navLinks').classList.remove('active');
+            
+            window.scrollTo(0, 0);
+            window.location.hash = pageName;
+            
+            if (pageName === 'home') {
+                setTimeout(animateStats, 100);
+            }
+        }
+
+        // Handle hash on load
+        const initialHash = window.location.hash.replace('#', '') || 'home';
+        showPage(initialHash);
+
+        // Stats Animation
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target + (stat.getAttribute('data-target') === '98' ? '%' : '+');
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current);
+                    }
+                }, 16);
+            });
+        }
+
+        // Animate stats on initial load
+        if (document.getElementById('home').classList.contains('active')) {
+            setTimeout(animateStats, 500);
+        }
+
+        // Project Filtering
+        function filterProjects(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const projects = document.querySelectorAll('.project-card');
+            projects.forEach(project => {
+                if (category === 'all' || project.dataset.category === category) {
+                    project.style.display = 'block';
+                    setTimeout(() => {
+                        project.style.opacity = '1';
+                        project.style.transform = 'scale(1)';
+                    }, 10);
+                } else {
+                    project.style.opacity = '0';
+                    project.style.transform = 'scale(0.9)';
+                    setTimeout(() => project.style.display = 'none', 300);
+                }
+            });
+        }
+
+        // Form Submissions
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showToast('Quote request submitted successfully! We\'ll contact you soon.');
+            document.getElementById('quoteForm').reset();
+        }
+
+        function submitViaWhatsApp() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('serviceType').value;
+            const budget = document.getElementById('budget').value;
+            const location = document.getElementById('location').value;
+            const message = document.getElementById('message').value;
+
+            if (!firstName || !service) {
+                showToast('Please fill in at least your name and service type.');
+                return;
+            }
+
+            const text = `*New Quote Request*%0A%0A*Name:* ${firstName} ${lastName}%0A*Email:* ${email}%0A*Phone:* ${phone}%0A*Service:* ${service}%0A*Budget:* ${budget || 'Not specified'}%0A*Location:* ${location}%0A%0A*Project Details:*%0A${message}`;
+            
+            window.open(`https://wa.me/+2347065949140?text= ${text}`, '_blank');
+        }
+
+        function submitViaEmail() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('serviceType').value;
+            const budget = document.getElementById('budget').value;
+            const location = document.getElementById('location').value;
+            const message = document.getElementById('message').value;
+
+            if (!firstName || !service) {
+                showToast('Please fill in at least your name and service type.');
+                return;
+            }
+
+            const subject = `Quote Request from ${firstName} ${lastName} - ${service}`;
+            const body = `Name: ${firstName} ${lastName}%0AEmail: ${email}%0APhone: ${phone}%0AService: ${service}%0ABudget: ${budget || 'Not specified'}%0ALocation: ${location}%0A%0AProject Details:%0A${message}`;
+            
+            window.location.href = `mailto:info@waolacrest.com?subject=${subject}&body=${body}`;
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.querySelector('p').textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.service-card, .value-card, .project-card, .staff-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 2000);
+        });
+
+    </script>
+</body>
+</html>
